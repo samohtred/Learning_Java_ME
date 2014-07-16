@@ -47,7 +47,29 @@ public class filehandler {
         }        
  */
 
-// 
+
+/* 2013/08/18 - Code-Beispiel für Parsing */
+    /*
+public String [][] file_read(String filepath) throws Exception
+{
+  ArrayList rows = new ArrayList();
+
+  FileReader fr = new FileReader(filePath);
+  BufferedReader br = new BufferedReader(fr);
+  String myList[] []= new String[10000][2];
+  
+  String currentRecord;
+  int offset = 0;
+  while((currentRecord = br.readLine()) != null)
+    myList[offset++] = currentRecord.split(';');
+//      rows.add(currentRecord.split(';'));
+
+  br.close();
+
+  return myList;
+}
+   */
+    
     public String[][] file_read(String filepath) {
         byte bytes[] = "".getBytes();
         try {
@@ -74,7 +96,7 @@ public class filehandler {
         while(splitPoint > 0) {
             splitPoint = parsestr.indexOf(";");            
             if (splitPoint > 0) 
-            {
+            {   
                 myList[0][line] = parsestr.substring(0,splitPoint).trim();
                 parsestr = parsestr.substring(splitPoint+1).trim();
                 splitPoint = parsestr.indexOf("\n");
@@ -90,8 +112,7 @@ public class filehandler {
             m_actual_size = line;
         }
         return myList;
-    }
-        
+    }     
     
     public int get_num_entries()
     {
